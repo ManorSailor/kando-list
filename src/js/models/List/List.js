@@ -1,32 +1,26 @@
+import Memory from "../../db/Memory";
+
 /**
- * TODO: Convert to Factory Functions
- * TODO: Make List factory inherit from MemoryDb factory or class
- * TODO: Get rid of duplicate code
+ * TODO: makeIdGen is violating DRY
  * 
  */
-class List {
-    static #internalID = 0;
+function makeIdGen(initialVal = 0) {
+    return () => initialVal++;
+}
+const idGen = makeIdGen();
 
-    constructor(name) {
-        this.id = List.#generateId();
-        this.name = name;
-        this.tasks = [];
-    }
+function List({ name }) {
+    // Dependencies
+    const memory = Memory();
 
-    static #generateId() {
-        return List.#internalID++;
-    }
-
-    addTask(task) {
-        this.tasks.push(task);
-    }
-
-    removeTask(task) {
-        this.tasks = this.tasks.filter(item => item.id !== task.id);
-    }
-
-    find(val, key='id') {
-        return this.tasks.find(item => item[key] === val);
+    // Public Properties
+    return {
+        id: idGen(),
+        name,
+        getTasks:   memory.fetch,
+        addTask:    memory.add,
+        removeTask: memory.remove,
+        find:       memory.find,
     }
 }
 

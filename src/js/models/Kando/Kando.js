@@ -1,24 +1,15 @@
+import Memory from "../../db/Memory";
+
 // Responsible for handling app data
-class Kando {
-    constructor() {
-        this.lists = [];
-    }
+const Kando = (() => {
+    const memory = Memory();
 
-    getLists() {
-        return this.lists;
-    }
-
-    addList(list) {
-        this.lists.push(list);
-    }
-
-    removeList(list) {
-        this.lists = this.lists.filter(item => item.id === list.id);
-    }
-
-    find(val, key='id') {
-        return this.lists.find(item => item[key] === val);
-    }
-}
+    return {
+        getLists:   memory.fetch,
+        addList:    memory.add,
+        removeList: memory.remove,
+        find:       memory.find,
+    };
+})();
 
 export default Kando;
