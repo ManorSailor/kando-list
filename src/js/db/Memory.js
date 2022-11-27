@@ -24,3 +24,5 @@ class Memory {
         return this.#db.find(item => item[key] === val);
     }
 }
+
+export default Memory;
