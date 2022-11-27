@@ -21,20 +21,13 @@ class LocalDB {
 /**
  * 
  */
-class LocalDBManager {
-    #db;
+function LocalDBManager(name) {
+    const db = new LocalDB(name);
 
-    constructor(name) {
-        this.#db = new LocalDB(name);
-    }
+    const fetch = () => db.getObject();
+    const save = (data) => db.setObject(data);
 
-    fetch() {
-        return this.#db.getObject();
-    }
-
-    save(data) {
-        this.#db.setObject(data);
-    }
+    return { fetch, save };
 }
 
 export default LocalDBManager;
