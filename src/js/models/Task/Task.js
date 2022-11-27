@@ -1,11 +1,12 @@
-/**
- * 
- */
-function makeIdGen(initialVal = 0) {
-    return () => initialVal++;
-}
+import { makeIdGen } from "../../utils";
+
 const idGen = makeIdGen();
 
+/**
+ * Task Factory (Base)
+ * @param {*} param0 
+ * @returns {Task}
+ */
 function Task({ desc, active = true }) {
     // Task instance methods
     const updateTask  = (data) => desc = data;

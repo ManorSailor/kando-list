@@ -1,14 +1,13 @@
 import Memory from "../../db/Memory";
+import { makeIdGen } from "../../utils";
 
-/**
- * TODO: makeIdGen is violating DRY
- * 
- */
-function makeIdGen(initialVal = 0) {
-    return () => initialVal++;
-}
 const idGen = makeIdGen();
 
+/**
+ * List Factory. 
+ * @param {*} param0 
+ * @returns {List}
+ */
 function List({ name }) {
     // Dependencies
     const memory = Memory();
