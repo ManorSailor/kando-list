@@ -5,7 +5,7 @@ const idGen = makeIdGen();
 /**
  * Task Factory (Base)
  * @param {*} param0 
- * @returns {Task}
+ * @returns {Object}
  */
 function Task({ desc, active = true }) {
     // Task instance methods

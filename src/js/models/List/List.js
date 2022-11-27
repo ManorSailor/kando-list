@@ -6,7 +6,7 @@ const idGen = makeIdGen();
 /**
  * List Factory. 
  * @param {*} param0 
- * @returns {List}
+ * @returns {Object}
  */
 function List({ name }) {
     // Dependencies
