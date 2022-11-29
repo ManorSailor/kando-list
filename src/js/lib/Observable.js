@@ -1,21 +1,23 @@
 import Memory from "../db/Memory";
 
-class Observable extends Memory {
+class Observable {
+    #observers;
+
     constructor() {
-        super();
+        this.#observers = new Memory();
     }
 
     addObserver(observer) {
         if (!observer.update) throw 'Observer is missing update method';
-        super.add(observer);
+        this.#observers.add(observer);
     }
 
     removeObserver(observer) {
-        super.remove(observer);
+        this.#observers.remove(observer);
     }
 
     notifyObservers(data) {
-        super.fetch().forEach(obj => obj.update(data));
+        this.#observers.fetch().forEach(obj => obj.update(data));
     }
 }
 
