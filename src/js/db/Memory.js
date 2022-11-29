@@ -1,15 +1,28 @@
 /**
- * Memory Factory, handles creating objs with common methods
+ * Memory Base Class
  */
-function Memory() {
-    let db = [];
+class Memory {
+    #db;
 
-    const fetch = () => db;
-    const add = (item) => db.push(item);
-    const remove = (item) => db = db.filter(element => element === item);
-    const find = (val, key = 'id') => db.find(item => item[key] === val);
+    constructor() {
+        this.#db = [];
+    }
 
-    return { fetch, add, remove, find };
+    fetch() {
+        return this.#db;
+    }
+
+    add(item) {
+        this.#db.push(item);
+    }
+
+    remove(item) {
+        this.#db = this.#db.filter(element => element === item);
+    }
+
+    find(val, key='id') {
+        return this.#db.find(item => item[key] === val);
+    }
 }
 
 export default Memory;

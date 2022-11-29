@@ -1,5 +1,5 @@
 /**
- * 
+ * LocalDB low level api
  */
 class LocalDB {
     constructor(name) {
@@ -19,15 +19,22 @@ class LocalDB {
 }
 
 /**
- * 
+ * LocalDB Wrapper. Dependency Inversion
  */
-function LocalDBManager(name) {
-    const db = new LocalDB(name);
+class LocalDBManager {
+    #db;
 
-    const fetch = () => db.getObject();
-    const save = (data) => db.setObject(data);
+    constructor(name) {
+        this.#db = new LocalDB(name);
+    }
 
-    return { fetch, save };
+    fetch() {
+        return this.#db.getObject();
+    }
+
+    save(data) {
+        this.#db.setObject(data);
+    }
 }
 
 export default LocalDBManager;
