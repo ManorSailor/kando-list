@@ -1,5 +1,5 @@
 /**
- * 
+ * LocalDB low level api
  */
 class LocalDB {
     constructor(name) {
@@ -19,7 +19,7 @@ class LocalDB {
 }
 
 /**
- * 
+ * LocalDB Wrapper. Dependency Inversion
  */
 class LocalDBManager {
     #db;

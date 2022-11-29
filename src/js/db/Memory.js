@@ -1,5 +1,5 @@
 /**
- * CRUD base class. Initial implementation
+ * Memory Base Class
  */
 class Memory {
     #db;
@@ -8,7 +8,7 @@ class Memory {
         this.#db = [];
     }
 
-    retrieve() {
+    fetch() {
         return this.#db;
     }
 
