@@ -1,24 +1,22 @@
 import Memory from "../db/Memory";
 
-/**
- * Observable base factory
- * @returns {Object}
- */
-function Observable() {
-    const observers = Memory();
+class Observable extends Memory {
+    constructor() {
+        super();
+    }
 
-    const addObserver = (observer) => {
+    addObserver(observer) {
         if (!observer.update) throw 'Observer is missing update method';
-        observers.add(observer);
-    }
-    
-    const removeObserver = (observer) => observers.remove(observer);
-
-    const notifyObservers = (data) => {
-        observers.fetch.forEach(observer => observer.update(data))
+        super.add(observer);
     }
 
-    return { addObserver, removeObserver, notifyObservers };
+    removeObserver(observer) {
+        super.remove(observer);
+    }
+
+    notifyObservers(data) {
+        super.fetch().forEach(obj => obj.update(data));
+    }
 }
 
 export default Observable;
