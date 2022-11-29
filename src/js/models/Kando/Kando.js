@@ -1,15 +1,37 @@
 import Memory from "../../db/Memory";
+import Observable from "../../lib/Observable";
 
 // Responsible for handling app data
-const Kando = (() => {
-    const memory = Memory();
+class Kando extends Observable {
+    #lists;
 
-    return {
-        getLists:   memory.fetch,
-        addList:    memory.add,
-        removeList: memory.remove,
-        find:       memory.find,
-    };
-})();
+    constructor() {
+        super();
+        this.#lists = new Memory();
+    }
 
-export default Kando;
+    get lists() {
+        return this.#lists.fetch();
+    }
+
+    addList(list) {
+        this.#lists.add(list);
+        super.notifyObservers(this);
+    }
+
+    removeList(list) {
+        this.#lists.remove(list);
+        super.notifyObservers(this);
+    }
+
+    find(list, byKey='id') {
+        return this.#lists.find(list, byKey);
+    }
+
+    toJSON() {
+        const obj = { ...this, lists: this.lists };
+        return obj;
+    }
+}
+
+export default new Kando();
