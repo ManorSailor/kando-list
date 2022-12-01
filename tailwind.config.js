@@ -1,9 +1,14 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
-    content: ['./src/**/*.{html,js}'],
+    content: ['./src/**/*.{html,js}', './dist/**/*.html'],
     theme: {
-        extend: {},
+        extend: {
+            fontFamily: {
+                'sans': ['Open Sans', ...defaultTheme.fontFamily.sans],
+            }
+        },
         colors: {
             'main': 'var(--bg-clr)',
             'accent': 'var(--acc-clr)',
