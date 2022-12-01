@@ -1,3 +1,4 @@
+import globalObservers from "../../lib/GlobalObservers";
 import Observable from "../../lib/Observable";
 import { makeIdGen } from "../../utils";
 
@@ -14,6 +15,7 @@ class Task extends Observable {
         this.id = idGen();
         this.desc = desc;
         this.active = active;
+        this.addObserver(...globalObservers);
     }
 
     updateTask(desc) {

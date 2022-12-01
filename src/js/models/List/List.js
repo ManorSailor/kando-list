@@ -1,4 +1,5 @@
 import Memory from "../../db/Memory";
+import globalObservers from "../../lib/GlobalObservers";
 import Observable from "../../lib/Observable";
 import { makeIdGen } from "../../utils";
 
@@ -17,6 +18,7 @@ class List extends Observable {
         this.id = idGen();
         this.name = name;
         this.#tasks = new Memory();
+        this.addObserver(...globalObservers);
     }
 
     get tasks() {

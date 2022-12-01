@@ -1,4 +1,5 @@
 import Memory from "../../db/Memory";
+import globalObservers from "../../lib/GlobalObservers";
 import Observable from "../../lib/Observable";
 
 // Responsible for handling app data
@@ -8,6 +9,7 @@ class Kando extends Observable {
     constructor() {
         super();
         this.#lists = new Memory();
+        this.addObserver(...globalObservers);
     }
 
     get lists() {
