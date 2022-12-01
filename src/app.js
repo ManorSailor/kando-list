@@ -1,3 +1,4 @@
+import dataController from "./js/lib/DataController";
 import Kando from "./js/models/Kando/Kando";
 import List from "./js/models/List/List";
 import Task from "./js/models/Task/Task";
@@ -7,3 +8,5 @@ import Task from "./js/models/Task/Task";
 window.Task = Task;
 window.List = List;
 window.Kando = Kando;
+
+dataController.init();
