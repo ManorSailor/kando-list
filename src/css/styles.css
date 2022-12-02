@@ -9,5 +9,6 @@
         --acc-clr: #0083ff;
         --acc-clr-alt: #6d28d9;
         --txt-clr: #fff;
+        --main-img: url('../../assets/main-bg.jpg');
     }
 }

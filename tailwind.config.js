@@ -7,6 +7,9 @@ module.exports = {
         extend: {
             fontFamily: {
                 'sans': ['Open Sans', ...defaultTheme.fontFamily.sans],
+            },
+            backgroundImage: {
+                'main-img': "var(--main-img)",
             }
         },
         colors: {
