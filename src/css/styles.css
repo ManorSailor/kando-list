@@ -9,6 +9,19 @@
         --acc-clr: #0083ff;
         --acc-clr-alt: #6d28d9;
         --txt-clr: #fff;
-        --main-img: url('../../assets/main-bg.jpg');
+        --main-img: url('../../assets/bg-alt-alt.jpg');
+    }
+
+    iconify-icon {
+        @apply inline;
+        @apply align-[-0.125em];
+        @apply cursor-pointer;
+        @apply transition-colors;
+        @apply duration-200;
+        @apply p-1;
+    }
+
+    iconify-icon:hover {
+        @apply text-accent;
     }
 }
