@@ -10,14 +10,14 @@
     <script src="main.js" defer></script>
     <title>Kando List</title>
 </head>
-<body class="bg-main text-white min-h-full">
+<body class="bg-main text-white min-h-screen">
     <!-- Background Image -->
     <div class="bg-main-img bg-cover bg-no-repeat bg-center absolute top-0 left-0 z-[-1] w-full h-full"></div>
 
     <!-- Navbar -->
-    <header class="w-full h-20 fixed top-0 left-0 flex items-center">
+    <header class="w-full h-20 fixed top-0 left-0 flex items-center z-50">
         <nav class="w-full flex gap-10 items-center px-6">
-            <iconify-icon id="sidebar-btn" class="bg-main z-[100] p-2 rounded-full" icon="octicon:settings-24" width="28"></iconify-icon>
+            <iconify-icon id="sidebar-btn" class="bg-main z-[100] p-2 rounded-full" icon="octicon:settings-24" width="28" aria-label="Sidebar Menu" aria-controls="sidebar"></iconify-icon>
 
             <ul class="min-w-[250px] w-full flex-grow flex items-center justify-between">
                 <li class="bg-main flex items-center gap-3 px-6 py-1 rounded-3xl">
@@ -49,5 +49,54 @@
             </ul>
         </nav>
     </header>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar bg-main flex flex-col gap-4 w-full max-w-[250px] min-h-screen p-4 fixed top-0 left-0 z-10" aria-expanded="true">
+        <!-- App Title -->
+        <div class="flex items-center ml-1">
+            <iconify-icon icon="material-symbols:view-kanban-outline" width="28" aria-hidden="true"></iconify-icon>
+            <h2 class="text-2xl font-semibold">Kando</h2>
+        </div>
+
+        <div class="flex flex-col gap-4">
+            <!-- Default Views -->
+            <ul class="">
+                <li class="flex font-thin hover:bg-gray-600/50 transition-colors duration-200 rounded-lg">
+                    <button id="today" class="flex-grow flex gap-2 items-center text-left p-2">
+                        <iconify-icon class="hover:text-white" icon="octicon:paper-airplane-16" width="16" aria-hidden="true"></iconify-icon>
+                        <p>Today</p>
+                    </button>
+                </li>
+                <li class="flex font-thin hover:bg-gray-600/50 transition-colors duration-200 rounded-lg">
+                    <button id="week" class="flex-grow flex gap-2 items-center text-left p-2">
+                        <iconify-icon class="hover:text-white" icon="octicon:milestone-16" width="16" aria-hidden="true"></iconify-icon>
+                        <p>This week</p>
+                    </button>
+                </li>
+                <li class="flex font-thin hover:bg-gray-600/50 transition-colors duration-200 rounded-lg">
+                    <button id="all-tasks" class="flex-grow flex gap-2 items-center text-left p-2">
+                        <iconify-icon class="hover:text-white" icon="octicon:project-roadmap-16" width="16" aria-hidden="true"></iconify-icon>
+                        <p>All tasks</p>
+                    </button>
+                </li>
+            </ul>
+
+            <!-- User Lists -->
+            <ul class="">
+                <li class="flex hover:bg-gray-600/50 transition-colors duration-200 rounded-lg">
+                    <button id="new-list" class="flex-grow flex items-center text-left p-2">
+                        <h3 class="flex-grow text-lg font-semibold">Your Lists</h3>
+                        <iconify-icon class="hover:text-white" icon="octicon:plus-16" width="18" aria-hidden="true"></iconify-icon>
+                    </button>
+                </li>
+                <li class="flex font-thin hover:bg-gray-600/50 transition-colors duration-200 rounded-lg">
+                    <button id="personal-list" class="flex-grow text-left p-2">Personal</button>
+                </li>
+                <li class="flex font-thin hover:bg-gray-600/50 transition-colors duration-200 rounded-lg">
+                    <button id="" class="flex-grow text-left p-2">Test</button>
+                </li>
+            </ul>
+        </div>
+    </aside>
 </body>
 </html>
