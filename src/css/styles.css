@@ -25,3 +25,9 @@
         @apply text-accent;
     }
 }
+
+@layer components {
+    .sidebar[aria-expanded='false'] {
+        transform: translate3d(-100%, 0, 0);
+    }
+}
