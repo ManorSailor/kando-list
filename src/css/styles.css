@@ -6,9 +6,12 @@
 @layer base {
   :root {
     --bg-clr: #161616;
+    --card-bg: #252525;
+    --card-bg-alt: #424242;
     --acc-clr: #0083ff;
     --acc-clr-alt: #6d28d9;
     --txt-clr: #fff;
+    --txt-clr-alt: #8e8e92;
     --main-img: url('../../assets/bg-alt-alt.jpg');
   }
 
@@ -35,6 +38,52 @@
 
   .sidebar[aria-expanded='false'] {
     transform: translate3d(-100%, 0, 0);
+  }
+
+  .task-form > input:focus-within {
+    outline: var(--acc-clr) solid 1px;
+  }
+
+  .task-form > button,
+  .task-form > button > * {
+    @apply transition-colors;
+    @apply duration-[350ms];
+  }
+
+  .task-form > button:hover,
+  .task-form:focus-within > button {
+    @apply bg-accent;
+  }
+
+  .task-form > button:hover > *,
+  .task-form:focus-within > button > * {
+    @apply text-white;
+  }
+
+  .task-checkbox {
+    @apply hidden;
+  }
+
+  .toggle {
+    @apply rounded-full;
+    border: 1px solid var(--txt-clr);
+  }
+
+  .toggle > .wrapper {
+    @apply w-full;
+    @apply h-full;
+    @apply rounded-full;
+    @apply origin-center;
+    @apply transition-transform;
+    @apply duration-300;
+  }
+
+  .task-checkbox:checked + .toggle > .wrapper {
+    transform: scale3d(1, 1, 1);
+  }
+
+  .task-checkbox:not(:checked) + .toggle > .wrapper {
+    transform: scale3d(0, 0, 0);
   }
 }
 
