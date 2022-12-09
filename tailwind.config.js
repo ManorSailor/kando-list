@@ -18,6 +18,8 @@ module.exports = {
                 'card-bg': 'var(--card-bg)',
                 'card-bg-alt': 'var(--card-bg-alt)',
                 'txt-clr-alt': 'var(--txt-clr-alt)',
+                'task-list-icon': 'var(--task-list-icon-clr)',
+                'task-date-icon': 'var(--task-date-icon-clr)',
             },
         },
     },
