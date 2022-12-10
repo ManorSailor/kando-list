@@ -4,20 +4,32 @@ class Observable {
     #observers;
 
     constructor() {
-        this.#observers = new Memory();
+        this.#observers = {};
     }
 
-    addObserver(observer) {
-        if (!observer.update) throw 'Observer is missing update method';
-        this.#observers.add(observer);
+    #hasEvent(eventType) {
+        if (!eventType) throw 'Event is missing';
+        return Boolean(this.#observers[eventType]);
     }
 
-    removeObserver(observer) {
-        this.#observers.remove(observer);
+    addObserver(eventType, ...observers) {
+        if (!this.#hasEvent(eventType)) {
+            this.#observers[eventType] = new Memory();
+        }
+        this.#observers[eventType].add(...observers);
     }
 
-    notifyObservers(data) {
-        this.#observers.fetch().forEach(obj => obj.update(data));
+    removeObserver(eventType, observer) {
+        if (this.#hasEvent(eventType)) {
+            this.#observers[eventType].remove(observer);
+        }
+    }
+
+    notifyObservers(eventType, data) {
+        if (this.#hasEvent(eventType)) {
+            const observers = this.#observers[eventType].fetch();
+            observers.forEach(observer => observer.update(data));
+        }
     }
 }
 

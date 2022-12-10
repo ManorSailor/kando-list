@@ -10,8 +10,8 @@ class Memory {
         return this.db;
     }
 
-    add(item) {
-        this.db.push(item);
+    add(...items) {
+        this.db.push(...items);
     }
 
     remove(item) {
