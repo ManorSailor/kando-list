@@ -18,24 +18,29 @@ class List extends Observable {
         this.id = idGen();
         this.name = name;
         this.#tasks = new Memory();
-        this.addObserver(...globalObservers);
+        this.addObserver(globalObservers.eventType, ...globalObservers.observers);
     }
 
     get tasks() {
         return this.#tasks.fetch();
     }
 
-    addTask(task) {
+    notifyObservers(eventType) {
+        super.notifyObservers(eventType, this);
+        super.notifyObservers(globalObservers.eventType, this);
+    }
+
+    addTask(task, eventType = 'TASK_ADD') {
         this.#tasks.add(task);
-        super.notifyObservers(this);
+        this.notifyObservers(eventType, this);
     }
 
-    removeTask(task) {
+    removeTask(task, eventType = 'TASK_REMOVE') {
         this.#tasks.remove(task);
-        super.notifyObservers(this);
+        this.notifyObservers(eventType, this);
     }
 
-    find(task, byKey='id') {
+    find(task, byKey = 'id') {
         return this.#tasks.find(task, byKey);
     }
 

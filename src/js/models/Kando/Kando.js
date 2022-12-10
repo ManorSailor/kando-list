@@ -9,21 +9,26 @@ class Kando extends Observable {
     constructor() {
         super();
         this.#lists = new Memory();
-        this.addObserver(...globalObservers);
+        this.addObserver(globalObservers.eventType, ...globalObservers.observers);
     }
 
     get lists() {
         return this.#lists.fetch();
     }
 
-    addList(list) {
-        this.#lists.add(list);
-        super.notifyObservers(this);
+    notifyObservers(eventType) {
+        super.notifyObservers(eventType, this);
+        super.notifyObservers(globalObservers.eventType, this);
     }
 
-    removeList(list) {
+    addList(list, eventType = 'LIST_ADD') {
+        this.#lists.add(list);
+        this.notifyObservers(eventType);
+    }
+
+    removeList(list, eventType = 'LIST_REMOVE') {
         this.#lists.remove(list);
-        super.notifyObservers(this);
+        this.notifyObservers(eventType);
     }
 
     find(list, byKey='id') {
