@@ -10,22 +10,27 @@ const idGen = makeIdGen();
  * @returns {Task}
  */
 class Task extends Observable {
-    constructor({ desc, active = true }) {
+    constructor({ title, active = true }) {
         super();
         this.id = idGen();
-        this.desc = desc;
+        this.title = title;
         this.active = active;
-        this.addObserver(...globalObservers);
+        this.addObserver(globalObservers.eventType, ...globalObservers.observers);
     }
 
-    updateTask(desc) {
-        this.desc = desc;
-        super.notifyObservers(this);
+    notifyObservers(eventType) {
+        super.notifyObservers(eventType, this);
+        super.notifyObservers(globalObservers.eventType, this);
     }
 
-    toggleState() {
+    updateTask(title, eventType = 'TASK_TITLE') {
+        this.title = title;
+        this.notifyObservers(eventType, this);
+    }
+
+    toggleState(eventType = 'TASK_TOGGLE') {
         this.active = !this.active;
-        super.notifyObservers(this);
+        this.notifyObservers(eventType, this);
     }
 }
 
