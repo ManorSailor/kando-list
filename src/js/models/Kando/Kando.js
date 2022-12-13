@@ -16,19 +16,19 @@ class Kando extends Observable {
         return this.#lists.fetch();
     }
 
-    notifyObservers(eventType) {
-        super.notifyObservers(eventType, this);
-        super.notifyObservers(globalObservers.eventType, this);
+    notifyObservers(eventType, data) {
+        super.notifyObservers(eventType, data);
+        super.notifyObservers(globalObservers.eventType, data);
     }
 
     addList(list, eventType = 'LIST_ADD') {
         this.#lists.add(list);
-        this.notifyObservers(eventType);
+        this.notifyObservers(eventType, { kando: this, list });
     }
 
     removeList(list, eventType = 'LIST_REMOVE') {
         this.#lists.remove(list);
-        this.notifyObservers(eventType);
+        this.notifyObservers(eventType, { kando: this, list });
     }
 
     find(list, byKey='id') {
