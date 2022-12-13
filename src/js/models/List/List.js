@@ -25,19 +25,19 @@ class List extends Observable {
         return this.#tasks.fetch();
     }
 
-    notifyObservers(eventType) {
-        super.notifyObservers(eventType, this);
-        super.notifyObservers(globalObservers.eventType, this);
+    notifyObservers(eventType, data) {
+        super.notifyObservers(eventType, data);
+        super.notifyObservers(globalObservers.eventType, data);
     }
 
     addTask(task, eventType = 'TASK_ADD') {
         this.#tasks.add(task);
-        this.notifyObservers(eventType, this);
+        this.notifyObservers(eventType, { list: this, task });
     }
 
     removeTask(task, eventType = 'TASK_REMOVE') {
         this.#tasks.remove(task);
-        this.notifyObservers(eventType, this);
+        this.notifyObservers(eventType, { list: this, task });
     }
 
     find(task, byKey = 'id') {
