@@ -5,6 +5,7 @@ import Observable from "../../lib/Observable";
 // Responsible for handling app data
 class Kando extends Observable {
     #lists;
+    #activeList;
 
     constructor() {
         super();
@@ -14,6 +15,16 @@ class Kando extends Observable {
 
     get lists() {
         return this.#lists.fetch();
+    }
+
+    get activeList() {
+        return this.#activeList;
+    }
+
+    set activeList(list) {
+        const oldActive = this.activeList;
+        this.#activeList = list;
+        this.notifyObservers('ACTIVE_LIST_CHANGED', { kando: this, newList: list, oldList: oldActive })
     }
 
     notifyObservers(eventType, data) {
@@ -36,7 +47,7 @@ class Kando extends Observable {
     }
 
     toJSON() {
-        const obj = { ...this, lists: this.lists };
+        const obj = { ...this, lists: this.lists, activeList: this.activeList };
         return obj;
     }
 }
