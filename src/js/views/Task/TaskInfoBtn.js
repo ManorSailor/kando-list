@@ -16,8 +16,8 @@ function btnView(task, callback) {
     return btn;
 }
 
-function TaskInfoBtn(task, callback = () => { throw 'Callback missing!' }) {
-    const taskInfoBtn = btnView(task, callback);
+function TaskInfoBtn(task, callback) {
+    const taskInfoBtn = btnView(task, () => callback(task));
 
     const taskTitle = {
         title: taskInfoBtn.querySelector('#task-info > p'),
