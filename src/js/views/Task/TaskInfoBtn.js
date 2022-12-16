@@ -24,12 +24,12 @@ function btnView(task, callback) {
 function TaskInfoBtn(task) {
     const taskInfoBtn = btnView(task, () => task.notifyObservers('TASK_ACCESSED'));
 
-    const taskTitle = (() => {
-        const title = taskInfoBtn.querySelector('#task-info > p');
-        return {
-            update: (task) => title.textContent = task.title,
-        }
-    })();
+    const taskTitle = {
+        title: taskInfoBtn.querySelector('#task-info > p'),
+        update: function (task) {
+            this.title.textContent = task.title;
+        },
+    }
     
     task.addObserver('TASK_TITLE', taskTitle);
 
