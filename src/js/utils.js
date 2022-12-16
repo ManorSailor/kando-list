@@ -19,7 +19,18 @@ function createElement(htmlStr, firstElementChild = true) {
     return (firstElementChild) ? docFrag.firstElementChild : docFrag;
 }
 
+/**
+ * Handles removing child nodes from the passed node
+ * @param {Node} node 
+ */
+function clearNode(node) {
+    while (node.firstElementChild) {
+        node.firstElementChild.remove();
+    }
+}
+
 export {
     makeIdGen,
     createElement,
+    clearNode,
 }
