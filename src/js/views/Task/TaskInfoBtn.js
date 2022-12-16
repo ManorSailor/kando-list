@@ -16,13 +16,8 @@ function btnView(task, callback) {
     return btn;
 }
 
-/**
- * Creates & return TaskInfoBtn View
- * @param {Task} task 
- * @returns {Node}
- */
-function TaskInfoBtn(task) {
-    const taskInfoBtn = btnView(task, () => task.notifyObservers('TASK_ACCESSED'));
+function TaskInfoBtn(task, callback = () => { throw 'Callback missing!' }) {
+    const taskInfoBtn = btnView(task, callback);
 
     const taskTitle = {
         title: taskInfoBtn.querySelector('#task-info > p'),
