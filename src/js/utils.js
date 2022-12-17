@@ -8,10 +8,10 @@ function makeIdGen(initialVal = 0) {
 }
 
 /**
- * Convert HTML string literal into DOM Node(s), returns a DocumentFragment
+ * Convert HTML string literal into DOM Node or DocumentFragment
  * @param {String} htmlStr
  * @param {Boolean} firstElementChild
- * @returns {DocumentFragment}
+ * @returns {Node|DocumentFragment}
  */
 function createElement(htmlStr, firstElementChild = true) {
     const range = document.createRange();
