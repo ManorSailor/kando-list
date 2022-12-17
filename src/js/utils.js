@@ -38,9 +38,19 @@ function toggleClasses(node, ...classList) {
     classList.forEach(cls => node.classList.toggle(cls));
 }
 
+/**
+ * Checks if the passed value is empty or not
+ * @param {Object|String} value 
+ * @returns {Boolean}
+ */
+function isEmptyValue(value) {
+    return (!value || value.trim() === '');
+}
+
 export {
     makeIdGen,
     createElement,
     clearNode,
     toggleClasses,
+    isEmptyValue,
 }
