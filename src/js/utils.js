@@ -29,8 +29,18 @@ function clearNode(node) {
     }
 }
 
+/**
+ * Toggles one or more classes on a node
+ * @param {Node} node 
+ * @param  {...String} classList 
+ */
+function toggleClasses(node, ...classList) {
+    classList.forEach(cls => node.classList.toggle(cls));
+}
+
 export {
     makeIdGen,
     createElement,
     clearNode,
+    toggleClasses,
 }
