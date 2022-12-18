@@ -15,7 +15,7 @@ class Memory {
     }
 
     remove(item) {
-        this.db = this.db.filter(element => element === item);
+        this.db = this.db.filter(element => element !== item);
     }
 
     find(val, key='id') {
