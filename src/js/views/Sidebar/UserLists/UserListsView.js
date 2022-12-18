@@ -9,12 +9,12 @@ const userListBody = createElement(`
 /**
  * Convert List into ListView & populate the provided node
  * @param {Node} userList 
- * @param {Kando} kando 
+ * @param {Function} switchActiveList
  * @param {...List} lists 
  */
-function renderLists(userList, kando, ...lists) {
+function renderLists(userList, switchActiveList, ...lists) {
     lists.forEach(list => {
-        const listView = ListView(list, kando);
+        const listView = ListView(list, switchActiveList);
         userList.append(listView);
     });
 }
@@ -22,15 +22,16 @@ function renderLists(userList, kando, ...lists) {
 /**
  * Generates UserListsView
  * @param {Kando} kando 
+ * @param {Function} switchActiveList 
  * @returns {Node}
  */
-function UserListsView(kando) {
+function UserListsView(kando, switchActiveList) {
     const userListView = userListBody.cloneNode(true);
 
     const addListObserver = {
         node: userListView,
         update: function (data) {
-            renderLists(this.node, kando, data.list);
+            renderLists(this.node, switchActiveList, data.list);
         },
     };
 
@@ -46,7 +47,7 @@ function UserListsView(kando) {
     kando.addObserver('LIST_ADDED', addListObserver);
     kando.addObserver('LIST_REMOVED', removeListObserver);
 
-    renderLists(userListView, kando, ...kando.lists);
+    renderLists(userListView, switchActiveList, ...kando.lists);
     return userListView;
 }
 

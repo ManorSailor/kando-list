@@ -11,13 +11,14 @@ const listWrapperBody = createElement(`
  * Generates a UserListComponent
  * @param {Kando} kando
  * @param {Function} addListHandler
+ * @param {Function} switchActiveList
  * @returns {Node}
  */
-function UserListComponent(kando, addListHandler) {
+function UserListComponent(kando, addListHandler, switchActiveList) {
     const listWrapperView = listWrapperBody.cloneNode(true);
 
     const addListBtnView = AddListBtnView(addListHandler);
-    const userListView   = UserListsView(kando);
+    const userListView   = UserListsView(kando, switchActiveList);
 
     listWrapperView.append(addListBtnView, userListView);
 
