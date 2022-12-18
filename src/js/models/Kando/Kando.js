@@ -22,9 +22,9 @@ class Kando extends Observable {
     }
 
     set activeList(list) {
-        const oldActive = this.activeList;
+        const lastList = this.activeList;
         this.#activeList = list;
-        this.notifyObservers('ACTIVE_LIST_CHANGED', { kando: this, newList: list, oldList: oldActive })
+        this.notifyObservers('ACTIVE_LIST_CHANGED', { kando: this, list, lastList })
     }
 
     notifyObservers(eventType, data) {
