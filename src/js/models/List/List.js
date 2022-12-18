@@ -37,12 +37,12 @@ class List extends Observable {
         super.notifyObservers(globalObservers.eventType, data);
     }
 
-    addTask(task, eventType = 'TASK_ADD') {
+    addTask(task, eventType = 'TASK_ADDED') {
         this.#tasks.add(task);
         this.notifyObservers(eventType, { list: this, task });
     }
 
-    removeTask(task, eventType = 'TASK_REMOVE') {
+    removeTask(task, eventType = 'TASK_REMOVED') {
         this.#tasks.remove(task);
         this.notifyObservers(eventType, { list: this, task });
     }

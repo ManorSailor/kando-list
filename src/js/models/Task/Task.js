@@ -23,12 +23,12 @@ class Task extends Observable {
         super.notifyObservers(globalObservers.eventType, this);
     }
 
-    updateTask(title, eventType = 'TASK_TITLE') {
+    updateTask(title, eventType = 'TASK_TITLE_CHANGED') {
         this.title = title;
         this.notifyObservers(eventType, this);
     }
 
-    toggleState(eventType = 'TASK_TOGGLE') {
+    toggleState(eventType = 'TASK_TOGGLED') {
         this.active = !this.active;
         this.notifyObservers(eventType, this);
     }
