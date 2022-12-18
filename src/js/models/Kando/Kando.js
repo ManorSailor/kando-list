@@ -32,12 +32,12 @@ class Kando extends Observable {
         super.notifyObservers(globalObservers.eventType, data);
     }
 
-    addList(list, eventType = 'LIST_ADD') {
+    addList(list, eventType = 'LIST_ADDED') {
         this.#lists.add(list);
         this.notifyObservers(eventType, { kando: this, list });
     }
 
-    removeList(list, eventType = 'LIST_REMOVE') {
+    removeList(list, eventType = 'LIST_REMOVED') {
         this.#lists.remove(list);
         this.notifyObservers(eventType, { kando: this, list });
     }

@@ -1,7 +1,7 @@
 import Memory from "../../db/Memory";
 import globalObservers from "../../lib/GlobalObservers";
 import Observable from "../../lib/Observable";
-import { makeIdGen } from "../../utils";
+import { makeIdGen, isEmptyValue } from "../../utils";
 
 const idGen = makeIdGen();
 
@@ -25,17 +25,24 @@ class List extends Observable {
         return this.#tasks.fetch();
     }
 
+    updateName(name) {
+        if (!isEmptyValue(name)) {
+            this.name = name;
+            this.notifyObservers('LIST_NAME_CHANGED', this);
+        }
+    }
+
     notifyObservers(eventType, data) {
         super.notifyObservers(eventType, data);
         super.notifyObservers(globalObservers.eventType, data);
     }
 
-    addTask(task, eventType = 'TASK_ADD') {
+    addTask(task, eventType = 'TASK_ADDED') {
         this.#tasks.add(task);
         this.notifyObservers(eventType, { list: this, task });
     }
 
-    removeTask(task, eventType = 'TASK_REMOVE') {
+    removeTask(task, eventType = 'TASK_REMOVED') {
         this.#tasks.remove(task);
         this.notifyObservers(eventType, { list: this, task });
     }

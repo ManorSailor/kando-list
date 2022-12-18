@@ -1,6 +1,6 @@
 import globalObservers from "../../lib/GlobalObservers";
 import Observable from "../../lib/Observable";
-import { makeIdGen } from "../../utils";
+import { isEmptyValue, makeIdGen } from "../../utils";
 
 const idGen = makeIdGen();
 
@@ -23,12 +23,14 @@ class Task extends Observable {
         super.notifyObservers(globalObservers.eventType, this);
     }
 
-    updateTask(title, eventType = 'TASK_TITLE') {
-        this.title = title;
-        this.notifyObservers(eventType, this);
+    updateTask(title, eventType = 'TASK_TITLE_CHANGED') {
+        if (!isEmptyValue(title)) {
+            this.title = title;
+            this.notifyObservers(eventType, this);
+        }
     }
 
-    toggleState(eventType = 'TASK_TOGGLE') {
+    toggleState(eventType = 'TASK_TOGGLED') {
         this.active = !this.active;
         this.notifyObservers(eventType, this);
     }
