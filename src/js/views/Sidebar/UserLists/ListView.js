@@ -21,11 +21,11 @@ function listView(list, callback) {
 /**
  * Generate ListView & attach listeners
  * @param {List} list 
- * @param {Function} listAccessHandler
+ * @param {Kando} kando
  * @returns {Node}
  */
-function ListView(list, listAccessHandler = () => console.log('You forgot about me!')) {
-    const ListView = listView(list, () => listAccessHandler(list));
+function ListView(list, kando) {
+    const ListView = listView(list, () => kando.notifyObservers('LIST_ACCESSED', list));
 
     const nameObserver = {
         node: ListView.querySelector('li > button'),
