@@ -30,8 +30,8 @@ function TaskInfoSection(list, removeTaskHandler) {
 
     onClickTask = (task) => list.notifyObservers('TASK_ACCESSED', task);
 
-    list.addObserver('TASK_ADD', taskObserver);
-    list.addObserver('TASK_REMOVE', taskObserver);
+    list.addObserver('TASK_ADDED', taskObserver);
+    list.addObserver('TASK_REMOVED', taskObserver);
     list.addObserver('TASK_ACCESSED', taskObserver);
 
     return TaskInfoSection;

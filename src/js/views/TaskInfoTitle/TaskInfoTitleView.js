@@ -9,7 +9,7 @@ const titleBody = ({ title }) => createElement(`<!-- Task Title --><textarea cla
  */
 function TaskInfoTitle(task) {
     const taskInfoTitle = titleBody(task);
-    taskInfoTitle.addEventListener('change', (e) => (!isEmptyValue(e.target.value)) ? task.updateTask(e.target.value) : '');
+    taskInfoTitle.addEventListener('change', (e) => task.updateTask(e.target.value));
     return taskInfoTitle;
 }
 

@@ -26,7 +26,7 @@ function TaskInfoBtn(task, callback) {
         },
     }
     
-    task.addObserver('TASK_TITLE', taskTitle);
+    task.addObserver('TASK_TITLE_CHANGED', taskTitle);
 
     return taskInfoBtn;
 }

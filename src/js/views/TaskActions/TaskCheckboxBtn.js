@@ -48,7 +48,7 @@ function TaskCheckboxBtn(task) {
         },
     };
 
-    task.addObserver('TASK_TOGGLE', taskCheckbox);
+    task.addObserver('TASK_TOGGLED', taskCheckbox);
 
     toggleBtnState(taskCheckbox.node, 'task-active', task);
     return taskCheckboxBtn;

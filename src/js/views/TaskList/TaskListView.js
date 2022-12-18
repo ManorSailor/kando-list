@@ -35,8 +35,8 @@ function TaskListView(list) {
         },
     };
 
-    list.addObserver('TASK_ADD', addTaskView);
-    list.addObserver('TASK_REMOVE', removeTaskView);
+    list.addObserver('TASK_ADDED', addTaskView);
+    list.addObserver('TASK_REMOVED', removeTaskView);
 
     renderTasks(list.tasks, taskListView);
     return taskListView;
