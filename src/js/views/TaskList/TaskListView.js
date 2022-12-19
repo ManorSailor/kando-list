@@ -7,10 +7,11 @@ const taskListBody = createElement(`<!-- Tasks List --><div id="task-list" class
  * Handles populating TaskListView with TaskViews
  * @param {Task} tasks 
  * @param {Node} taskList 
+ * @param {Function} switchActiveTask 
  */
-function renderTasks(tasks, taskList) {
+function renderTasks(tasks, taskList, switchActiveTask) {
     tasks.forEach(task => {
-        const taskView = TaskView(task);
+        const taskView = TaskView(task, switchActiveTask);
         taskList.insertBefore(taskView, taskList.firstChild);
     });
 }
@@ -18,13 +19,14 @@ function renderTasks(tasks, taskList) {
 /**
  * Creates TaskListView & handles updates as List object changes
  * @param {List} list 
+ * @param {Function} switchActiveTask 
  * @returns {Node}
  */
-function TaskListView(list) {
+function TaskListView(list, switchActiveTask) {
     const taskListView = taskListBody.cloneNode(true);
 
     const addTaskView = {
-        update: (data) => renderTasks([data.task], taskListView),
+        update: (data) => renderTasks([data.task], taskListView, switchActiveTask),
     };
 
     const removeTaskView = {
@@ -38,7 +40,7 @@ function TaskListView(list) {
     list.addObserver('TASK_ADDED', addTaskView);
     list.addObserver('TASK_REMOVED', removeTaskView);
 
-    renderTasks(list.tasks, taskListView);
+    renderTasks(list.tasks, taskListView, switchActiveTask);
     return taskListView;
 }
 

@@ -16,8 +16,8 @@ function btnView(task, callback) {
     return btn;
 }
 
-function TaskInfoBtn(task, callback) {
-    const taskInfoBtn = btnView(task, () => callback(task));
+function TaskInfoBtn(task, switchActiveTask) {
+    const taskInfoBtn = btnView(task, () => switchActiveTask(task));
 
     const taskTitle = {
         title: taskInfoBtn.querySelector('#task-info > p'),

@@ -8,12 +8,13 @@ const sectionBody = createElement(`<!-- Tasks --><section class="bg-main flex-gr
  * 
  * @param {List} list 
  * @param {Function} formHandler 
+ * @param {Function} switchActiveTask 
  * @returns {Node}
  */
-function TaskSectionView(list, formHandler) {
+function TaskSectionView(list, formHandler, switchActiveTask) {
     const taskSection = sectionBody.cloneNode(true);
 
-    const taskListView = TaskListView(list);
+    const taskListView = TaskListView(list, switchActiveTask);
     const taskFormView = TaskFormView(formHandler);
 
     taskSection.append(taskListView, taskFormView);
