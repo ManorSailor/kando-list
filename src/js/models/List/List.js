@@ -12,6 +12,7 @@ const idGen = makeIdGen();
  */
 class List extends Observable {
     #tasks;
+    #activeTask;
 
     constructor({ name }) {
         super();
@@ -23,6 +24,16 @@ class List extends Observable {
 
     get tasks() {
         return this.#tasks.fetch();
+    }
+
+    get activeTask() {
+        return this.#activeTask;
+    }
+
+    set activeTask(task) {
+        const oldTask = this.activeTask;
+        this.#activeTask = task;
+        this.notifyObservers('ACTIVE_TASK_CHANGED', { list: this, task, oldTask });
     }
 
     updateName(name) {
