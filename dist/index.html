@@ -57,7 +57,7 @@
     </div>
 
     <!-- Sidebar -->
-    <aside id="sidebar" class="sidebar bg-main flex flex-col gap-4 w-full max-w-[250px] min-h-screen p-4 fixed top-0 left-0 z-10" aria-expanded="true">
+    <aside id="sidebar" class="sidebar bg-main flex flex-col gap-4 w-full max-w-[250px] h-[inherit] p-4 fixed top-0 left-0 z-10" aria-expanded="true">
         <!-- App Title -->
         <div class="flex items-center ml-1">
             <iconify-icon icon="material-symbols:view-kanban-outline" width="28" aria-hidden="true"></iconify-icon>
@@ -84,22 +84,6 @@
                         <iconify-icon class="hover:text-white" icon="octicon:project-roadmap-16" width="16" aria-hidden="true"></iconify-icon>
                         <p>All tasks</p>
                     </button>
-                </li>
-            </ul>
-
-            <!-- User Lists -->
-            <ul class="">
-                <li class="flex hover:bg-gray-600/50 transition-colors duration-200 rounded-lg">
-                    <button id="new-list" class="flex-grow flex items-center text-left p-2">
-                        <h3 class="flex-grow text-lg font-semibold">Your Lists</h3>
-                        <iconify-icon class="hover:text-white" icon="octicon:plus-16" width="18" aria-hidden="true"></iconify-icon>
-                    </button>
-                </li>
-                <li class="flex font-thin hover:bg-gray-600/50 transition-colors duration-200 rounded-lg">
-                    <button id="personal-list" class="flex-grow text-left p-2">Personal</button>
-                </li>
-                <li class="flex font-thin hover:bg-gray-600/50 transition-colors duration-200 rounded-lg">
-                    <button id="" class="flex-grow text-left p-2">Test</button>
                 </li>
             </ul>
         </div>

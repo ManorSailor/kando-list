@@ -115,4 +115,8 @@
     width: calc(100% - 250px);
     transform: translate3d(250px, 0, 0);
   }
+
+  .task-active {
+    color: var(--acc-clr);
+  }
 }
