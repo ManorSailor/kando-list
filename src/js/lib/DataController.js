@@ -32,6 +32,9 @@ function populateModels(appData) {
 
         Kando.addList(list);
     });
+
+    // Set the activeList to firstList on page Load
+    Kando.activeList = Kando.firstList;
 }
 
 const dataController = { init };
