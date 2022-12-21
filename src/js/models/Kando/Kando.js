@@ -17,6 +17,10 @@ class Kando extends Observable {
         return this.#lists.fetch();
     }
 
+    get firstList() {
+        return this.lists[0];
+    }
+
     get activeList() {
         return this.#activeList;
     }
@@ -34,11 +38,13 @@ class Kando extends Observable {
 
     addList(list, eventType = 'LIST_ADDED') {
         this.#lists.add(list);
+        this.activeList = list;
         this.notifyObservers(eventType, { kando: this, list });
     }
 
     removeList(list, eventType = 'LIST_REMOVED') {
         this.#lists.remove(list);
+        this.activeList = this.firstList;
         this.notifyObservers(eventType, { kando: this, list });
     }
 
