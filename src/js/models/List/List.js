@@ -26,6 +26,11 @@ class List extends Observable {
         return this.#tasks.fetch();
     }
 
+    get firstTask() {
+        const lastItem = this.tasks.length - 1;
+        return this.tasks[lastItem];
+    }
+
     get activeTask() {
         return this.#activeTask;
     }
@@ -50,11 +55,13 @@ class List extends Observable {
 
     addTask(task, eventType = 'TASK_ADDED') {
         this.#tasks.add(task);
+        this.activeTask = task;
         this.notifyObservers(eventType, { list: this, task });
     }
 
     removeTask(task, eventType = 'TASK_REMOVED') {
         this.#tasks.remove(task);
+        this.activeTask = this.firstTask;
         this.notifyObservers(eventType, { list: this, task });
     }
 
