@@ -1,15 +1,15 @@
-import { createElement } from "../../utils";
+import { createElement } from "../../../utils";
 import TaskView from "../Task/TaskView";
 
 const taskListBody = createElement(`<!-- Tasks List --><div id="task-list" class="flex-grow p-4 overflow-x-hidden overflow-y-auto rounded-xl pretty-scrollbar"></div>`);
 
 /**
- * Handles populating TaskListView with TaskViews
- * @param {Task} tasks 
+ * Convert tasks into Task objects & render them in the provided node
  * @param {Node} taskList 
  * @param {Function} switchActiveTask 
+ * @param {...Task} tasks 
  */
-function renderTasks(tasks, taskList, switchActiveTask) {
+function renderTasks(taskList, switchActiveTask, ...tasks) {
     tasks.forEach(task => {
         const taskView = TaskView(task, switchActiveTask);
         taskList.insertBefore(taskView, taskList.firstChild);
@@ -25,11 +25,11 @@ function renderTasks(tasks, taskList, switchActiveTask) {
 function TaskListView(list, switchActiveTask) {
     const taskListView = taskListBody.cloneNode(true);
 
-    const addTaskView = {
-        update: (data) => renderTasks([data.task], taskListView, switchActiveTask),
+    const addTaskObserver = {
+        update: (data) => renderTasks(taskListView, switchActiveTask, data.task),
     };
 
-    const removeTaskView = {
+    const removeTaskObserver = {
         update: (data) => {
             const task = data.task;
             const taskNode = [...taskListView.children].find(taskNode => taskNode.getAttribute('data-id') === task.id.toString());
@@ -37,10 +37,10 @@ function TaskListView(list, switchActiveTask) {
         },
     };
 
-    list.addObserver('TASK_ADDED', addTaskView);
-    list.addObserver('TASK_REMOVED', removeTaskView);
+    list.addObserver('TASK_ADDED', addTaskObserver);
+    list.addObserver('TASK_REMOVED', removeTaskObserver);
 
-    renderTasks(list.tasks, taskListView, switchActiveTask);
+    renderTasks(taskListView, switchActiveTask, ...list.tasks);
     return taskListView;
 }
 

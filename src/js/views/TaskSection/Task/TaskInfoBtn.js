@@ -1,5 +1,11 @@
-import { createElement } from "../../utils";
+import { createElement } from "../../../utils";
 
+/**
+ * Generates a btnView & assigns a click listener
+ * @param {Task} task 
+ * @param {Function} callback 
+ * @returns {Node}
+ */
 function btnView(task, callback) {
     const generateBtn = ({ id, title }) => createElement(`
     <!-- Task Data -->
@@ -16,6 +22,12 @@ function btnView(task, callback) {
     return btn;
 }
 
+/**
+ * Generates a TaskInfoBtn & Observes for Task Title changes
+ * @param {Task} task 
+ * @param {Function} switchActiveTask 
+ * @returns {Node}
+ */
 function TaskInfoBtn(task, switchActiveTask) {
     const taskInfoBtn = btnView(task, () => switchActiveTask(task));
 

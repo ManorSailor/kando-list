@@ -1,5 +1,11 @@
-import { createElement } from "../../utils";
+import { createElement } from "../../../utils";
 
+/**
+ * Generates a btnView & assigns a click listener
+ * @param {Task} task 
+ * @param {Function} callback 
+ * @returns {Node}
+ */
 function btnView(task, callback) {
     const generateBtn = ({ id, active }) => createElement(`
     <!-- Task Checkbox -->
@@ -17,15 +23,19 @@ function btnView(task, callback) {
     return btn;
 }
 
+/**
+ * Generates a TaskCheckboxBtn & Observes for Task Toggle event
+ * @param {Task} task 
+ * @param {Function} callback 
+ * @returns {Node}
+ */
 function TaskCheckboxBtn(task, callback = () => task.toggleState()) {
     const taskCheckboxBtn = btnView(task, callback);
 
-    const taskCheckbox = (() => {
-        const taskCheckbox = taskCheckboxBtn.querySelector('#task-checkbox > input');
-        return {
-            update: () => (!task.active) ? taskCheckbox.setAttribute('checked', '') : taskCheckbox.removeAttribute('checked'),
-        }
-    })();
+    const taskCheckbox = {
+        checkbox: taskCheckboxBtn.querySelector('#task-checkbox > input'),
+        update: () => (!task.active) ? this.checkbox.setAttribute('checked', '') : this.checkbox.removeAttribute('checked'),
+    };
 
     task.addObserver('TASK_TOGGLED', taskCheckbox);
 
