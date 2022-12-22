@@ -1,4 +1,4 @@
-import { createElement } from "../../utils";
+import { createElement } from "../../../utils";
 
 const attachmentsBody = createElement(`
 <!-- Task Attachments (Post MVP) -->
