@@ -9,17 +9,23 @@ function init() {
     
     const appData = localdb.fetch();
 
-    if (appData.lists) populateModels(appData);
+    if (appData.lists) {
+        reloadAppState(appData)
+    } else {
+        const defaultList = new List({ name: 'Personal' });
+        Kando.addList(defaultList);
+        localdb.save(Kando);
+    }
 
     // Initialize data observer. Bind context of save method to localdb
     dataObserver.init(localdb.save.bind(localdb), Kando);
 }
 
 /**
- * Handles populating the models with objects of proper type on each page load
+ * Reload app state in memory by converting objects into proper types
  * @param {Object} data 
  */
-function populateModels(appData) {
+function reloadAppState(appData) {
     const lists = appData.lists;
 
     lists.forEach(listObj => {
