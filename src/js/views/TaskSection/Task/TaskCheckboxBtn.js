@@ -34,7 +34,9 @@ function TaskCheckboxBtn(task, callback = () => task.toggleState()) {
 
     const taskCheckbox = {
         checkbox: taskCheckboxBtn.querySelector('#task-checkbox > input'),
-        update: () => (!task.active) ? this.checkbox.setAttribute('checked', '') : this.checkbox.removeAttribute('checked'),
+        update: function (task) {
+            (!task.active) ? this.checkbox.setAttribute('checked', '') : this.checkbox.removeAttribute('checked')
+        },
     };
 
     task.addObserver('TASK_TOGGLED', taskCheckbox);
