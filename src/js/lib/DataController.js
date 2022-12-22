@@ -9,8 +9,8 @@ function init() {
     
     const appData = localdb.fetch();
 
-    if (appData.lists) {
-        reloadAppState(appData)
+    if (appData.lists.length) {
+        reloadAppState(appData);
     } else {
         const defaultList = new List({ name: 'Personal' });
         Kando.addList(defaultList);
