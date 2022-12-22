@@ -40,7 +40,7 @@ function UserListsView(kando, switchActiveList) {
         update: function (data) {
             const list = data.list;
             const listNode = [...this.node.children].find(listNode => listNode.getAttribute('data-id') === list.id.toString());
-            listNode.remove();
+            listNode?.remove();
         },
     };
 
