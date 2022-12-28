@@ -58,4 +58,4 @@ class Kando extends Observable {
     }
 }
 
-export default new Kando();
+export default Kando;
