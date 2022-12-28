@@ -7,9 +7,12 @@ import Task from './js/models/Task/Task';
 import UserListComponent from './js/views/Sidebar/UserLists/UserListComponent';
 import MainContentView from './js/views/MainContent/MainContentView';
 
-dataController.init();
+// Initialize a new Kando Instance
+const kando = new Kando();
 
-MainContentView(Kando, addTaskHandler, removeTaskHandler, switchActiveTask);
+dataController.init(kando, List, Task);
+
+MainContentView(kando, addTaskHandler, removeTaskHandler, switchActiveTask);
 
 const contentWrapper = document.getElementById('content-wrapper');
 const sidebar = document.getElementById('sidebar');
@@ -36,31 +39,31 @@ function toggleSidebar() {
     contentWrapper.classList.toggle('sidebar-is-open');
 }
 
-const UserLists = UserListComponent(Kando, addListHandler, switchActiveList);
+const UserLists = UserListComponent(kando, addListHandler, switchActiveList);
 sidebar.append(UserLists);
 
 /* =================== Callbacks =================== */
 
 function addTaskHandler(data) {
     const task = new Task(data);
-    Kando.activeList.addTask(task);
+    kando.activeList.addTask(task);
 }
 
 function removeTaskHandler(task) {
-    Kando.activeList.removeTask(task);
+    kando.activeList.removeTask(task);
 }
 
 function addListHandler(name) {
     const list = new List({ name });
-    Kando.addList(list);
+    kando.addList(list);
 }
 
 function switchActiveList(list) {
-    Kando.activeList = list;
+    kando.activeList = list;
 }
 
 function switchActiveTask(task) {
-    Kando.activeList.activeTask = task;
+    kando.activeList.activeTask = task;
 }
 
-window.kando = Kando;
+window.kando = kando;
