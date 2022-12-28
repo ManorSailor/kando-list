@@ -15,7 +15,7 @@ function init(kando, List, Task) {
     if (appData.lists?.length) {
         reloadAppState(kando, List, Task, appData);
     } else {
-        initDefaultState(kando, localdb);
+        initDefaultState(kando, localdb, List);
     }
 
     // Initialize data observer. Bind context of save method to localdb
@@ -26,8 +26,9 @@ function init(kando, List, Task) {
  * Initialize default app state through a pre-defined list
  * @param {Kando} kando 
  * @param {LocalDBManager} localdb 
+ * @param {Constructor} List 
  */
-function initDefaultState(kando, localdb) {
+function initDefaultState(kando, localdb, List) {
     const defaultList = new List({ name: 'Personal' });
     kando.addList(defaultList);
     localdb.save(kando);
