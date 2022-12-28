@@ -9,7 +9,7 @@ function init() {
     
     const appData = localdb.fetch();
 
-    if (appData.lists.length) {
+    if (appData.lists?.length) {
         reloadAppState(appData);
     } else {
         const defaultList = new List({ name: 'Personal' });
