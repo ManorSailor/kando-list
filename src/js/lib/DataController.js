@@ -23,7 +23,7 @@ function init() {
 
 /**
  * Reload app state in memory by converting objects into proper types
- * @param {Object} data 
+ * @param {Object} appData 
  */
 function reloadAppState(appData) {
     const lists = appData.lists;
