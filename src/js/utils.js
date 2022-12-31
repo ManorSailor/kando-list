@@ -1,3 +1,5 @@
+import { format } from "date-fns";
+
 /**
  * Higher order func which returns an ID generator func
  * @param {Number} initialVal 
@@ -47,10 +49,32 @@ function isEmptyValue(value) {
     return (!value || value.trim() === '');
 }
 
+/**
+ * Checks if the provided string is ValidDateString or not
+ * @param {String} date 
+ * @returns {Boolean}
+ */
+function isDateValid(date) {
+    return Boolean(Date.parse(date));
+}
+
+/**
+ * Convert provided date into either validDateString or a custom format
+ * @param {String} dateStr 
+ * @param {Boolean} validDateString - 
+ * @returns {String}
+ */
+function dateConverter(dateStr, validDateString = true) {
+    const date = new Date(dateStr);
+    return (validDateString) ? format(date, 'yyyy-mm-dd') : format(date, 'MMM dd, yyyy');
+}
+
 export {
     makeIdGen,
     createElement,
     clearNode,
     toggleClasses,
     isEmptyValue,
+    isDateValid,
+    dateConverter,
 }
