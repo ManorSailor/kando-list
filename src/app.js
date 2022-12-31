@@ -6,6 +6,7 @@ import List from './js/models/List/List';
 import Task from './js/models/Task/Task';
 import UserListComponent from './js/views/Sidebar/UserLists/UserListComponent';
 import MainContentView from './js/views/MainContent/MainContentView';
+import navActionsInit from './js/views/Navbar/NavActions';
 
 // Initialize a new Kando Instance
 const kando = new Kando();
@@ -13,6 +14,9 @@ const kando = new Kando();
 dataController.init(kando, List, Task);
 
 MainContentView(kando, addTaskHandler, removeTaskHandler, switchActiveTask);
+
+// Initialize navbar button actions
+navActionsInit(kando, removeListHandler, markAllTasks);
 
 const contentWrapper = document.getElementById('content-wrapper');
 const sidebar = document.getElementById('sidebar');
@@ -58,6 +62,10 @@ function addListHandler(name) {
     kando.addList(list);
 }
 
+function removeListHandler(list) {
+    kando.removeList(list);
+}
+
 function switchActiveList(list) {
     kando.activeList = list;
 }
@@ -66,4 +74,8 @@ function switchActiveTask(task) {
     kando.activeList.activeTask = task;
 }
 
-window.kando = kando;
+function markAllTasks(tasks) {
+    tasks?.forEach(task => task.toggleState());
+}
+
+window.kando = Kando;
