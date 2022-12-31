@@ -3,7 +3,7 @@ import 'iconify-icon';
 import dataController from "./js/lib/DataController";
 import Kando from './js/models/Kando/Kando';
 import List from './js/models/List/List';
-import Task from './js/models/Task/Task';
+import DetailedTask from "./js/models/Task/DetailedTask";
 import UserListComponent from './js/views/Sidebar/UserLists/UserListComponent';
 import MainContentView from './js/views/MainContent/MainContentView';
 import navActionsInit from './js/views/Navbar/NavActions';
@@ -11,7 +11,7 @@ import navActionsInit from './js/views/Navbar/NavActions';
 // Initialize a new Kando Instance
 const kando = new Kando();
 
-dataController.init(kando, List, Task);
+dataController.init(kando, List, DetailedTask);
 
 MainContentView(kando, addTaskHandler, removeTaskHandler, switchActiveTask);
 
@@ -49,7 +49,7 @@ sidebar.append(UserLists);
 /* =================== Callbacks =================== */
 
 function addTaskHandler(data) {
-    const task = new Task(data);
+    const task = new DetailedTask(data);
     kando.activeList.addTask(task);
 }
 
@@ -78,4 +78,4 @@ function markAllTasks(tasks) {
     tasks?.forEach(task => task.toggleState());
 }
 
-window.kando = Kando;
+window.kando = kando;
