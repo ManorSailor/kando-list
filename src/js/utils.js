@@ -66,7 +66,7 @@ function isDateValid(date) {
  */
 function dateConverter(dateStr, validDateString = true) {
     const date = new Date(dateStr);
-    return (validDateString) ? format(date, 'yyyy-mm-dd') : format(date, 'MMM dd, yyyy');
+    return (validDateString) ? format(date, 'yyyy-MM-dd') : format(date, 'MMM dd, yyyy');
 }
 
 export {
