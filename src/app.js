@@ -77,5 +77,3 @@ function switchActiveTask(task) {
 function markAllTasks(tasks) {
     tasks?.forEach(task => task.toggleState());
 }
-
-window.kando = kando;
