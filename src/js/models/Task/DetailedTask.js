@@ -42,6 +42,15 @@ class DetailedTask extends Task {
         this.#notes = notes;
         this.notifyObservers('TASK_NOTES_CHANGED', { task: this, notes: this.#notes });
     }
+
+    toJSON() {
+        return { 
+            ...this,
+            date: this.date,
+            priority: this.priority,
+            notes: this.notes,
+        };
+    }
 }
 
 export default DetailedTask;
