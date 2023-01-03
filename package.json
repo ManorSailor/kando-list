@@ -24,9 +24,12 @@
   "homepage": "https://github.com/ManorSailor/kando-list#readme",
   "devDependencies": {
     "css-loader": "^6.7.2",
+    "eslint": "^8.31.0",
+    "eslint-config-prettier": "^8.6.0",
     "postcss": "^8.4.19",
     "postcss-loader": "^7.0.1",
     "postcss-preset-env": "^7.8.3",
+    "prettier": "2.8.1",
     "style-loader": "^3.3.1",
     "tailwindcss": "^3.2.4",
     "webpack": "^5.75.0",
